@@ -1,0 +1,1294 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Binar Academy Challenge Chapter 9 API Documentation",
+    "version": "1.0.0",
+    "title": "Binar Academy Challenge Chapter 9",
+    "termsOfService": "",
+    "contact": {
+      "email": "team1@gmail.com"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/api/",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": ""
+    },
+    {
+      "name": "User",
+      "description": ""
+    },
+    {
+      "name": "Game",
+      "description": ""
+    },
+    {
+      "name": "Gameplay",
+      "description": ""
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "register user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "registrasi user baru",
+            "schema": {
+              "type": "object",
+              "required": [
+                "fullname",
+                "email",
+                "username",
+                "password"
+              ],
+              "properties": {
+                "fullname": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "user id"
+                    },
+                    "fullname": {
+                      "type": "string",
+                      "description": "fullname"
+                    },
+                    "username": {
+                      "type": "string",
+                      "description": "username"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "email"
+                    },
+                    "password": {
+                      "type": "string",
+                      "description": "password"
+                    },
+                    "total_score": {
+                      "type": "integer",
+                      "description": "total_score"
+                    },
+                    "bio": {
+                      "type": "string",
+                      "description": "bio"
+                    },
+                    "city": {
+                      "type": "string",
+                      "description": "city"
+                    },
+                    "social_media_url": {
+                      "type": "string",
+                      "description": "social media"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "username dan password tidak boleh kosong"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "username yang anda gunakan sudah terdaftar!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalah pada sistem!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "login user",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "data user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "login berhasil!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "user id"
+                    },
+                    "fullname": {
+                      "type": "string",
+                      "description": "fullname"
+                    },
+                    "username": {
+                      "type": "string",
+                      "description": "username"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "email"
+                    },
+                    "accessToken": {
+                      "type": "string",
+                      "description": "token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "username dan password tidak boleh kosong!"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "password yang anda masukkan tidak sesuai!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "user tidak ditemukan!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalah pada sistem!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "get all data user",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "data berhasil ditampilkan!"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fullname": {
+                        "type": "string",
+                        "description": "fullname"
+                      },
+                      "username": {
+                        "type": "string",
+                        "description": "username"
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "email"
+                      },
+                      "password": {
+                        "type": "string",
+                        "description": "password"
+                      },
+                      "total_score": {
+                        "type": "integer",
+                        "description": "0"
+                      },
+                      "bio": {
+                        "type": "string",
+                        "description": "bio"
+                      },
+                      "city": {
+                        "type": "string",
+                        "description": "city"
+                      },
+                      "social_media_url": {
+                        "type": "string",
+                        "description": "social media"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "description": "2022-07-18 15:52:24.162+07"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "description": "2022-07-18 15:52:24.162+07"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "gagal login!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "user tidak ditemukan!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "get detail data user",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of user",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "data berhasil ditampilkan!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "fullname": {
+                      "type": "string",
+                      "description": "fullname"
+                    },
+                    "username": {
+                      "type": "string",
+                      "description": "username"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "email"
+                    },
+                    "password": {
+                      "type": "string",
+                      "description": "password"
+                    },
+                    "total_score": {
+                      "type": "integer",
+                      "description": "0"
+                    },
+                    "bio": {
+                      "type": "string",
+                      "description": "bio"
+                    },
+                    "city": {
+                      "type": "string",
+                      "description": "ciy"
+                    },
+                    "social_media_url": {
+                      "type": "string",
+                      "description": "social media"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": "2022-07-18 15:52:24.162+07"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "2022-07-18 15:52:24.162+07"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "user tidak ditemukan!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalah pada sistem!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "edit data user",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of user",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "data user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fullname": {
+                  "type": "string",
+                  "example": "fullname"
+                },
+                "username": {
+                  "type": "string",
+                  "example": "username"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "password"
+                },
+                "total_score": {
+                  "type": "integer",
+                  "example": "0"
+                },
+                "bio": {
+                  "type": "string",
+                  "example": "bio"
+                },
+                "city": {
+                  "type": "string",
+                  "example": "city"
+                },
+                "social_media_url": {
+                  "type": "string",
+                  "example": "social media"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "succes",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "data user berhasil diubah!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": "1"
+                    },
+                    "fullname": {
+                      "type": "string",
+                      "example": "fullname"
+                    },
+                    "username": {
+                      "type": "string",
+                      "example": "username"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "email"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "password"
+                    },
+                    "total_score": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "bio": {
+                      "type": "string",
+                      "example": "bio"
+                    },
+                    "city": {
+                      "type": "string",
+                      "example": "city"
+                    },
+                    "social_media_url": {
+                      "type": "string",
+                      "example": "social media"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2022-07-18 15:50:29.6+07"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2022-07-18 15:50:29.6+07"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "example": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "user tidak ditemukan!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalahan pada sistem!"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
+      }
+    },
+    "/users/score": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "get all data score user",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "data berhasil ditampilkan!"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fullname": {
+                        "type": "string",
+                        "description": "fullname"
+                      },
+                      "username": {
+                        "type": "string",
+                        "description": "username"
+                      },
+                      "total_score": {
+                        "type": "integer",
+                        "description": "0"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalahan pada sistem!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game": {
+      "get": {
+        "tags": [
+          "Game"
+        ],
+        "summary": "get all data game",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "data berhasil ditampilkan!"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "description": "game id"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "game name"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "game description"
+                      },
+                      "thumbnail_url": {
+                        "type": "string",
+                        "description": "game thumbnail url"
+                      },
+                      "game_url": {
+                        "type": "string",
+                        "description": "game game url"
+                      },
+                      "play_count": {
+                        "type": "integer",
+                        "description": "game play count"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "description": "2022-07-18 15:52:24.162+07"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "description": "2022-07-18 15:52:24.162+07"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalahan pada sistem!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/{id}": {
+      "get": {
+        "tags": [
+          "Game"
+        ],
+        "summary": "get detail data game",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of game",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "data berhasil ditampilkan!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "game id"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "game name"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "game description"
+                    },
+                    "thumbnail_url": {
+                      "type": "string",
+                      "description": "game thumbnail url"
+                    },
+                    "game_url": {
+                      "type": "string",
+                      "description": "game url"
+                    },
+                    "play_count": {
+                      "type": "integer",
+                      "description": "game play count"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": "2022-07-18 15:52:24.162+07"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "2022-07-18 15:52:24.162+07"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "game tidak ditemukan!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalahan pada sistem!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/{id}/gameboard": {
+      "get": {
+        "tags": [
+          "Gameplay"
+        ],
+        "summary": "get data leaderboard by game id",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of game",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "data berhasil ditampilkan!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "gameid": {
+                      "type": "integer",
+                      "description": "1"
+                    },
+                    "userid": {
+                      "type": "integer",
+                      "description": "1"
+                    },
+                    "score": {
+                      "type": "integer",
+                      "description": "1"
+                    },
+                    "gameplay_user" :{
+                      "type": "object",
+                      "properties": {
+                        "fullname": {
+                          "type": "string",
+                          "description": "fullname"
+                        },
+                        "username": {
+                          "type": "string",
+                          "description": "username"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "email"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalahan pada sistem!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/{id}/userboard": {
+      "get": {
+        "tags": [
+          "Gameplay"
+        ],
+        "summary": "get data leaderboard by user id",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of user",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "data berhasil ditampilkan!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "gameid": {
+                      "type": "integer",
+                      "description": "1"
+                    },
+                    "userid": {
+                      "type": "integer",
+                      "description": "1"
+                    },
+                    "score": {
+                      "type": "integer",
+                      "description": "1"
+                    },
+                    "gameplay_game" :{
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "name"
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "description"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalahan pada sistem!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gameplay/add": {
+      "post": {
+        "tags": [
+          "Gameplay"
+        ],
+        "summary": "add score",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "add score",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "gameid": {
+                  "type": "integer"
+                },
+                "userid": {
+                  "type": "integer"
+                },
+                "score": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "User successfully updated"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "gameid": {
+                      "type": "integer",
+                      "description": "1"
+                    },
+                    "userid": {
+                      "type": "integer",
+                      "description": "1"
+                    },
+                    "score": {
+                      "type": "integer",
+                      "description": "1"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "user id not found!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "failed to update!"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Token": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  }
+}
