@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       bio: DataTypes.STRING,
       city: DataTypes.STRING,
       social_media_url: DataTypes.STRING,
+      img_url: DataTypes.STRING,
     },
     {
       sequelize,
