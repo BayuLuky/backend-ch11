@@ -7,7 +7,7 @@ const restrict = require("../middlewares/restrict");
  */
 
 router.all("/:id", (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "https://frontend-binarch11.herokuapp.com");
     res.header(
       "Access-Control-Allow-Headers",
       "X-Requested-With,Content-Type,Authorization"
