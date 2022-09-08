@@ -9,7 +9,7 @@
       "email": "team1@gmail.com"
     }
   },
-  "host": "localhost:4000",
+  "host": "backend-binarch11.herokuapp.com",
   "basePath": "/api/",
   "tags": [
     {
@@ -30,7 +30,8 @@
     }
   ],
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/register": {
@@ -1045,7 +1046,7 @@
                       "type": "integer",
                       "description": "1"
                     },
-                    "gameplay_user" :{
+                    "gameplay_user": {
                       "type": "object",
                       "properties": {
                         "fullname": {
@@ -1137,7 +1138,7 @@
                       "type": "integer",
                       "description": "1"
                     },
-                    "gameplay_game" :{
+                    "gameplay_game": {
                       "type": "object",
                       "properties": {
                         "name": {
