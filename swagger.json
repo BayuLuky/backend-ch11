@@ -394,6 +394,10 @@
                       "updatedAt": {
                         "type": "string",
                         "description": "2022-07-18 15:52:24.162+07"
+                      },
+                      "img_url": {
+                        "type": "string",
+                        "example": "img url"
                       }
                     }
                   }
@@ -514,6 +518,10 @@
                     "updatedAt": {
                       "type": "string",
                       "description": "2022-07-18 15:52:24.162+07"
+                    },
+                    "img_url": {
+                      "type": "string",
+                      "example": "img url"
                     }
                   }
                 }
@@ -613,6 +621,10 @@
                 "social_media_url": {
                   "type": "string",
                   "example": "social media"
+                },
+                "img_url": {
+                  "type": "string",
+                  "example": "img url"
                 }
               }
             }
@@ -678,6 +690,10 @@
                     "updatedAt": {
                       "type": "string",
                       "example": "2022-07-18 15:50:29.6+07"
+                    },
+                    "img_url": {
+                      "type": "string",
+                      "example": "img url"
                     }
                   }
                 }
