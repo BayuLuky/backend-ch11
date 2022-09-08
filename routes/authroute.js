@@ -2,7 +2,7 @@ const router = require("express").Router();
 const authController = require("../controllers/api/AuthController");
 const restrict = require("../middlewares/restrict");
 router.all("/register", (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://frontend-binarch11.herokuapp.com");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "X-Requested-With,Content-Type,Authorization"
@@ -11,7 +11,7 @@ router.all("/register", (req, res, next) => {
 });
 
 router.all("/login", (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://frontend-binarch11.herokuapp.com");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "X-Requested-With,Content-Type,Authorization"
