@@ -621,10 +621,6 @@
                 "social_media_url": {
                   "type": "string",
                   "example": "social media"
-                },
-                "img_url": {
-                  "type": "string",
-                  "example": "img url"
                 }
               }
             }
@@ -690,10 +686,6 @@
                     "updatedAt": {
                       "type": "string",
                       "example": "2022-07-18 15:50:29.6+07"
-                    },
-                    "img_url": {
-                      "type": "string",
-                      "example": "img url"
                     }
                   }
                 }
@@ -808,6 +800,113 @@
             }
           }
         }
+      }
+    },
+    "/users/img/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "edit img data user",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of user",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "data user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "img_url": {
+                  "type": "string",
+                  "example": "img url"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "succes",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "data user berhasil diubah!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": "1"
+                    },
+                    "img_url": {
+                      "type": "string",
+                      "example": "img url"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "example": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "user tidak ditemukan!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string",
+                  "description": "failed"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "terjadi kesalahan pada sistem!"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Token": []
+          }
+        ]
       }
     },
     "/game": {
