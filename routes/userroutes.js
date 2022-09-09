@@ -20,5 +20,6 @@ router.get("/score", userController.getUserScores);
 router.get("/", userController.getUsers);
 router.get("/:id", userController.getUserDetail);
 router.put("/:id", restrict, userController.updateUser);
+router.put("/img/:id", restrict, userController.updateImageUser);
 
 module.exports = router;
