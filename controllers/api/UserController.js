@@ -85,7 +85,7 @@ class UserController {
             next(error);
         }        
     }
-    
+
     static async updateImageUser (req, res) {
       try {
         const {
@@ -98,8 +98,8 @@ class UserController {
     
         const id = +req.params.id;
     
-        const user = await User.update(payload, { where: { id }, returning: true });
-    
+        const user = await User.upsert({ id: id, img_url: payload, });
+
         if (!user) {
           return res.status(404).json({
             result: 'failed',
