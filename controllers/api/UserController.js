@@ -98,7 +98,7 @@ class UserController {
     
         const id = +req.params.id;
     
-        const user = await User.upsert({ id: id, img_url: payload, });
+        const user = await User.upsert({ id: id, img_url: req.body.img_url, });
 
         if (!user) {
           return res.status(404).json({
